@@ -1,0 +1,5 @@
+SUB = 'Solar/Utility/Battery'
+SBU = 'Solar/Battery/Utility'
+SOLAR_FIRST = 'Solar first'
+SOLAR_UTILITY = 'Solar and utility simultaneously'
+UNKNOWN = 'Unkown'

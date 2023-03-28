@@ -1,0 +1,12 @@
+{
+  "WIFI": {
+    "SSID": "<<Wifi SSID>>",
+    "PASSWORD": "<<Wifi Password>>"
+  },
+  "UMQTT": {
+    "HOST": "<<UMQTT Host>>",
+    "PORT": "<<UMQTT PORT>>",
+    "USER": "<<UMQTT USERNAME>>",
+    "PASS": "<<UMQTT PASSWORD>>"
+  }
+}

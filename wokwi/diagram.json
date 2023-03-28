@@ -15,8 +15,7 @@
       "id": "sevseg1",
       "top": 75.61,
       "left": -234.99,
-      "attrs": { "digits": "4",
-        "common": "cathode" }
+      "attrs": { "digits": "4", "common": "cathode" }
     },
     {
       "type": "wokwi-resistor",
@@ -38,6 +37,13 @@
       "top": 36.51,
       "left": 324.89,
       "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 145.21,
+      "left": 308.09,
+      "attrs": { "color": "green" }
     }
   ],
   "connections": [
@@ -56,7 +62,9 @@
     [ "led1:C", "pico:GND.8", "green", [ "v0" ] ],
     [ "r2:1", "led1:A", "green", [ "v0" ] ],
     [ "r2:2", "pico:GP28", "green", [ "v0" ] ],
-    [ "r1:2", "pico:GND.4", "green", [ "h39.48", "v-81.93" ] ]
+    [ "r1:2", "pico:GND.4", "green", [ "h39.48", "v-81.93" ] ],
+    [ "btn1:2.l", "pico:GP27", "green", [ "h-21.83", "v-84.33" ] ],
+    [ "btn1:1.r", "pico:VBUS", "green", [ "h52.9", "v-183.88", "h-221.99" ] ]
   ],
   "dependencies": {}
 }
