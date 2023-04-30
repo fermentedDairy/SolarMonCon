@@ -1,5 +1,5 @@
 from FourDigitSevenSegment import FourDigitSevenSegment
-from LED import turn_led_on, turn_led_off, set_indicators
+from LED import turn_led_on, turn_led_off, set_indicators, toggle_led
 from WiFi import MyWifi
 from mqttClient import MyMQTT
 from Switches import Switches
@@ -8,11 +8,16 @@ import constants
 import time
 import config
 
+i = 0
+while i <= 5:
+    time.sleep(0.5)
+    toggle_led("LED")
+    i = i + 1
+    
 wifi = MyWifi()
 mqtt = MyMQTT()
 switches = Switches()
 display = FourDigitSevenSegment()
-
 
 # Poll the switch pins. Only publish if desired and current are different. wait 1000 loops to prevent interface flooding
 def publish_output_if_required(count):
@@ -54,22 +59,28 @@ turn_led_off("LED")
 wifi.logon_to_network()
 print("WiFi Status:", str(wifi.get_wifi().status()))
 if wifi.get_wifi().status() != 3:
-    print('WiFi connection failed. Resetting')
-    time.sleep(5)
+    i = 0
+    while i <= 100:
+        display.display_number('A  ' + str(wifi.get_wifi().status()))
+        i = i + 1
     reset()
-
+    
 turn_led_on("LED")
 
 try:
     mqtt.configure()
 except:  # NOSONAR; python:S5754; The docs don't mention an exception type, I'm ignoring the linter
     print('Could not connect to mqtt. Resetting')
-    time.sleep(5)
+    i = 0
+    while i <= 100:
+        display.display_number("C    ")
+        i = i + 1
     reset()
 
 print("startup complete")
 output_count = 0
 charger_count = 0
+    
 while True:
     mqtt.check_msg()
     set_indicators(mqtt)

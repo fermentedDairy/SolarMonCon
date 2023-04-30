@@ -1,10 +1,12 @@
 import network
 import config
 import utime
-from LED import turn_led_on, toggle_led
+from LED import toggle_led
+from FourDigitSevenSegment import FourDigitSevenSegment
 
 class MyWifi:
     __wlan = None
+    __display = FourDigitSevenSegment()
     
     def get_wifi(self):
         return self.__wlan
@@ -18,6 +20,7 @@ class MyWifi:
         
         max_wait = 10
         while max_wait > 0:
+            self.__display.display_number('A   ')
             if self.__wlan.status() < 0 or self.__wlan.status() >= 3:
                 break
             max_wait -= 1
@@ -25,12 +28,3 @@ class MyWifi:
             toggle_led("LED")
             utime.sleep(1)
             
-            #Handle connection error
-            print(self.__wlan.status())
-            if self.__wlan.status() != 3:
-                raise RuntimeError('wifi connection failed')
-            else:
-                turn_led_on("LED")
-                print('connected')
-                status = self.__wlan.ifconfig()
-                print('ip = ' + status[0])
