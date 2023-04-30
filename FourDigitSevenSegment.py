@@ -19,6 +19,7 @@ class FourDigitSevenSegment:
     __F = Pin(9, Pin.OUT)
     __G = Pin(10, Pin.OUT)
 
+
     __num_to_pin_map = {' ': (),
                         '0': (__A, __B, __C, __D, __E, __F),
                         '1': (__B, __C),
@@ -29,7 +30,9 @@ class FourDigitSevenSegment:
                         '6': (__A, __F, __E, __D, __C, __G),
                         '7': (__A, __B, __C, __F),
                         '8': (__A, __B, __C, __D, __E, __F, __G),
-                        '9': (__F, __A, __B, __G, __C, __D)}
+                        '9': (__F, __A, __B, __G, __C, __D),
+                        'A': (__A, __B, __C, __G, __E, __F),
+                        'C': (__A, __F, __E, __D)}
 
     def print_7_seg_number(self, index, digit):
         clear_segment_pins()

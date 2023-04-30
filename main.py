@@ -3,10 +3,9 @@ from LED import turn_led_on, turn_led_off, set_indicators, toggle_led
 from WiFi import MyWifi
 from mqttClient import MyMQTT
 from Switches import Switches
-from machine import Pin, reset
+from machine import reset
 import constants
 import time
-import config
 
 i = 0
 while i <= 5:
@@ -84,7 +83,7 @@ charger_count = 0
 while True:
     mqtt.check_msg()
     set_indicators(mqtt)
-    display.display_number(mqtt.get_battery_voltage())
+    display.display_number(mqtt.get_battery_percentage())
     output_count = publish_output_if_required(output_count)
     charger_count = publish_charger_if_required(charger_count)
-    display.display_number(mqtt.get_battery_voltage())
+    display.display_number(mqtt.get_battery_percentage())
